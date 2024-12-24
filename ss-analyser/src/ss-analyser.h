@@ -28,10 +28,8 @@ enum nl80211_channel_type {
  */
 #define SPECTRAL_HT20_NUM_BINS          56
 #define SPECTRAL_HT20_40_NUM_BINS		128
-
-#if defined(__WIN32__)
-#pragma pack(push,1)
-#endif
+#define MAX_RSSI_SUPPORT 256
+#define IDEAL_SIGNAL_POWER -118
 
 struct sample_tlv {
         u8 type;        /* see ath_sample */
@@ -151,7 +149,9 @@ struct scanresult {
 int ss_analyser_init(char *fname);
 void ss_analyser_exit(void);
 void ss_analyser_usage(const char *prog);
-
+int compute_index();
+int compute_ath10k_index();
+int compute_ath9k_index();
 extern struct scanresult *result_list;
 extern int scanresults_n;
 
